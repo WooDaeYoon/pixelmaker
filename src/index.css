@@ -3,9 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: #213547;
-  background-color: #f0f2f5;
+  color-scheme: dark;
+  color: #f5f5f5;
+  background-color: #1e1e24;
 
   font-synthesize: none;
   text-rendering: optimizeLegibility;
@@ -48,10 +48,6 @@ button:focus-visible {
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #f0f2f5;
-  }
   button {
     background-color: #f9f9f9;
   }
