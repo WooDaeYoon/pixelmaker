@@ -252,7 +252,10 @@ function App() {
   };
 
   const addCustomColor = () => {
-    if (customColors.length >= 10) return;
+    if (customColors.length >= 10) {
+      alert("팔레트에 추가할 수 있는 색은 최대 10개입니다.");
+      return;
+    }
     if (!customColors.includes(currentColor)) {
       setCustomColors([...customColors, currentColor]);
     }
@@ -342,9 +345,7 @@ function App() {
             <button 
               className="add-color-btn" 
               onClick={addCustomColor} 
-              title={customColors.length >= 10 ? "최대 10개까지 추가 가능합니다" : "팔레트에 추가"}
-              disabled={customColors.length >= 10}
-              style={{ opacity: customColors.length >= 10 ? 0.5 : 1 }}
+              title="팔레트에 추가"
             >
               <Plus size={16} />
             </button>
