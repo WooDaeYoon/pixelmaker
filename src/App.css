@@ -93,8 +93,12 @@
   justify-content: center;
   border-radius: 4px;
 }
-.add-color-btn:hover {
+.add-color-btn:hover:not(:disabled) {
   background-color: #5c5cff;
+}
+
+.add-color-btn.remove:hover {
+  background-color: #ff5c5c;
 }
 
 .color-palette {

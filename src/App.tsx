@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { Pencil, Droplet, Eraser, Move, Download, Image as ImageIcon, SplitSquareHorizontal, Pipette, Plus, Undo } from 'lucide-react';
+import { Pencil, Droplet, Eraser, Move, Download, Image as ImageIcon, SplitSquareHorizontal, Pipette, Plus, Minus, Undo } from 'lucide-react';
 import './App.css';
 
 const CANVAS_SIZE = 64;
@@ -252,9 +252,14 @@ function App() {
   };
 
   const addCustomColor = () => {
+    if (customColors.length >= 10) return;
     if (!customColors.includes(currentColor)) {
       setCustomColors([...customColors, currentColor]);
     }
+  };
+
+  const removeCurrentColor = () => {
+    setCustomColors(customColors.filter(c => c !== currentColor));
   };
 
   const removeCustomColor = (colorToRemove: string, e: React.MouseEvent) => {
@@ -334,8 +339,21 @@ function App() {
               className="color-picker"
               title="색상 선택"
             />
-            <button className="add-color-btn" onClick={addCustomColor} title="팔레트에 추가">
+            <button 
+              className="add-color-btn" 
+              onClick={addCustomColor} 
+              title={customColors.length >= 10 ? "최대 10개까지 추가 가능합니다" : "팔레트에 추가"}
+              disabled={customColors.length >= 10}
+              style={{ opacity: customColors.length >= 10 ? 0.5 : 1 }}
+            >
               <Plus size={16} />
+            </button>
+            <button 
+              className="add-color-btn remove" 
+              onClick={removeCurrentColor} 
+              title="현재 색상 제거"
+            >
+              <Minus size={16} />
             </button>
           </div>
 
