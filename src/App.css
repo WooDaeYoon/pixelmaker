@@ -9,7 +9,7 @@
 
 /* Sidebar / Toolbar */
 .toolbar {
-  width: 80px;
+  width: 110px;
   background-color: #2b2b36;
   border-right: 1px solid #3d3d4d;
   display: flex;
@@ -17,7 +17,7 @@
   align-items: center;
   padding: 20px 0;
   gap: 15px;
-  overflow-y: auto;
+  overflow-y: visible;
 }
 
 .tool-btn {
