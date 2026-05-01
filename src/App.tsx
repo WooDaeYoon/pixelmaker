@@ -236,9 +236,22 @@ function App() {
   const handleDownload = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    // Create an offscreen canvas to scale up the image to 640x640
+    const exportCanvas = document.createElement('canvas');
+    const scale = 10;
+    exportCanvas.width = CANVAS_SIZE * scale;
+    exportCanvas.height = CANVAS_SIZE * scale;
+    
+    const ctx = exportCanvas.getContext('2d');
+    if (!ctx) return;
+    
+    // Disable image smoothing for crisp pixel art scaling
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(canvas, 0, 0, exportCanvas.width, exportCanvas.height);
     
     // Use toBlob instead of toDataURL to ensure correct file type and extension handling
-    canvas.toBlob((blob) => {
+    exportCanvas.toBlob((blob) => {
       if (!blob) return;
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
